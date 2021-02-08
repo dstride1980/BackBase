@@ -1,13 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AddComputerPage {
     WebDriver driver;
@@ -31,22 +28,27 @@ public class AddComputerPage {
     }
 
     public void computer_Name_Input(String cName){
-        Computer_Name.sendKeys(cName);
+
+        executor.executeScript("arguments[0].value='"+cName+"'", Computer_Name);
     }
 
     public void introduced_Date_Input(String iDate){
+
         Introduced_Date.sendKeys(iDate);
     }
 
     public void discontinued_Date_Input(String dDate){
+
         Discontinued_Date.sendKeys(dDate);
     }
 
     public void company_Dropdown(String company){
-         Company.sendKeys(company);
+
+        Company.sendKeys(company);
     }
 
     public void create_Computer_Button_Click(){
+
         Create_This_Computer.click();
     }
 }
