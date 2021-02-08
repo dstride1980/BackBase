@@ -6,4 +6,4 @@ Feature: Create Feature
     Then the new computer is displayed with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
     Examples:
     | computer_name | introduced | discontinued | company |
-    | daz           |            |              |         |
+    | A             | 1980-03-23 | 2020-03-23   | RCA     |
