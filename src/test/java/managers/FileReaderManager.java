@@ -1,4 +1,6 @@
-package browser;
+package managers;
+
+import browser.ConfigFileReader;
 
 public class FileReaderManager {
 
