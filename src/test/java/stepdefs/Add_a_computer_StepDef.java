@@ -1,6 +1,5 @@
 package stepdefs;
 
-import managers.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,20 +19,20 @@ public class Add_a_computer_StepDef{
 
     public Add_a_computer_StepDef(Setup setup){
         this.setup = setup;
+        driver = setup.Driver();
+        pageObjectManager = new PageObjectManager(driver);
+        mainDatabasePage = pageObjectManager.getMainDatabasePage();
+        addComputerPage = pageObjectManager.getAddComputerPage();
     }
 
     @Given("I am on the computer database website")
     public void iAmOnTheComputerDatabaseWebsite() {
-        driver = setup.Driver();
-        pageObjectManager = new PageObjectManager(driver);
-        mainDatabasePage = pageObjectManager.getHomePage();
         mainDatabasePage.open_Database();
     }
 
     @When("I add a new computer with the details {string},{string},{string} and {string}")
     public void iAddANewComputerWithTheDetailsAnd(String cName, String iDate, String dDate, String company) throws InterruptedException {
         mainDatabasePage.add_Computer_Button_Click();
-        addComputerPage = pageObjectManager.getAddComputerPage();
         addComputerPage.computer_Name_Input(cName);
         addComputerPage.introduced_Date_Input(iDate);
         addComputerPage.discontinued_Date_Input(dDate);

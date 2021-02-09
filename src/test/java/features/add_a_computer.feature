@@ -1,4 +1,4 @@
-Feature: add_a_computer Feature
+Feature: add_a_computer
 
   Scenario Outline: Add a computer to the Database
     Given I am on the computer database website
