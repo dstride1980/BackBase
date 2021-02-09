@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="QA_Test" options="--add-exports java.base/jdk.internal.icu.text=ALL-UNNAMED --add-exports jdk.internal.vm.compiler/org.graalvm.compiler.debug=ALL-UNNAMED" />
+      <module name="QA_Test" options="" />
     </option>
   </component>
 </project>

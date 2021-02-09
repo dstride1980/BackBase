@@ -7,7 +7,8 @@ import io.cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "features"
-        ,glue={"stepdefs"}
+        ,glue= "stepdefs"
+        ,extraGlue = "setup"
 )
 
 public class TestRunner {

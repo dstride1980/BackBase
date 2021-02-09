@@ -34,21 +34,21 @@ public class AddComputerPage {
 
     public void introduced_Date_Input(String iDate){
 
-        Introduced_Date.sendKeys(iDate);
+        executor.executeScript("arguments[0].value='"+iDate+"'", Introduced_Date);
     }
 
     public void discontinued_Date_Input(String dDate){
 
-        Discontinued_Date.sendKeys(dDate);
+        executor.executeScript("arguments[0].value='"+dDate+"'", Discontinued_Date);
     }
 
     public void company_Dropdown(String company){
 
-        Company.sendKeys(company);
+        executor.executeScript("var select = arguments[0]; for(var i = 0; i < select.options.length; i++){ if(select.options[i].text == arguments[1]){ select.options[i].selected = true; } }", Company, company);
     }
 
     public void create_Computer_Button_Click(){
 
-        Create_This_Computer.click();
+        executor.executeScript("arguments[0].click()", Create_This_Computer);
     }
 }

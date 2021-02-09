@@ -2,19 +2,19 @@ package managers;
 
 import org.openqa.selenium.WebDriver;
 import pages.AddComputerPage;
-import pages.HomePage;
+import pages.MainDatabasePage;
 
 public class PageObjectManager {
     private WebDriver driver;
-    private HomePage homePage;
+    private MainDatabasePage mainDatabasePage;
     private AddComputerPage addComputerPage;
 
     public PageObjectManager(WebDriver driver) {
         this.driver = driver;
     }
 
-    public HomePage getHomePage(){
-        return (homePage == null) ? homePage = new HomePage(driver) : homePage;
+    public MainDatabasePage getHomePage(){
+        return (mainDatabasePage == null) ? mainDatabasePage = new MainDatabasePage(driver) : mainDatabasePage;
     }
 
     public AddComputerPage getAddComputerPage(){
