@@ -20,6 +20,8 @@ public class AddComputerPage {
     private WebElement Company;
     @FindBy(xpath = "//body/section[@id='main']/form[1]/div[1]/input[1]")
     private WebElement Create_This_Computer;
+    @FindBy(xpath = "//body/section[@id='main']/form[1]/fieldset[1]/div[1]")
+    private WebElement Company_Name_Error_Message;
 
     public AddComputerPage(WebDriver driver){
         this.driver = driver;
@@ -50,5 +52,16 @@ public class AddComputerPage {
     public void create_Computer_Button_Click(){
 
         executor.executeScript("arguments[0].click()", Create_This_Computer);
+    }
+
+    public String computer_Name_Error_Message(){
+        var error = Company_Name_Error_Message.getAttribute("class");
+        return error;
+    }
+
+    public Boolean create_Computer_Button_Displayed(){
+
+        var displayed = Create_This_Computer.isDisplayed();
+        return displayed;
     }
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import pages.EditComputerPage;
 import pages.MainDatabasePage;
 import setup.Setup;
-
 import static org.junit.Assert.*;
 
 public class Delete_a_computer_StepDef {
