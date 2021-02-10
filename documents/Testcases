@@ -1,0 +1,104 @@
+Testcases by feature:
+@Automated = Testcases that have been Automated
+@NotAutomated = Testcases that have not been Automated
+
+Feature: add_a_computer
+
+  @Automated
+  Scenario Outline: Add a computer to the Database
+    Given I am on the computer database website
+    When I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Then the new computer is displayed with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     |
+
+  @Automated
+  Scenario Outline: Computer name is mandatory adding a computer
+    Given I am on the computer database website
+    When I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Then a error is displayed
+    And the computer is not created
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      |               | 1980-03-23 | 2020-03-23   | RCA     |
+	  
+  @NotAutomated
+  Scenario Outline: Incorrect date formats adding a computer
+    Given I am on the computer database website
+    When I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Then the "introduced_date" displays a error 
+	And the "discontinued_date" displays a error 
+    And the computer is not created
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      | AAAAA         | 23-03-1980 | 23-03-2020   | RCA     |
+	  
+
+Feature: update_a_computer
+
+  @Automated
+  Scenario Outline: update the company field
+    Given I am on the computer database website
+    And I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    When I edit the computer "<computer_name>" company field with "<updated_company>"
+    Then the new computer is displayed with the details "<computer_name>","<introduced>","<discontinued>" and "<updated_company>"
+    Examples:
+      | computer_name | introduced | discontinued | company | updated_company |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     | IBM             |
+
+  @Automated
+  Scenario Outline: Computer name is mandatory updating a computer
+    Given I am on the computer database website
+    And I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    When I edit the computer by removing the computer name "<computer_name>"
+    Then a error is displayed
+    And the computer is displayed with the old details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     |	
+
+  @NotAutomated
+  Scenario Outline: Incorrect date formats updating a computer
+    Given I am on the computer database website
+	And I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    When I edit the computer introduced date and discontinued date field with "<updated_introduced_date>" and "<updated_discontinued_date>"
+    Then the "introduced_date" displays a error 
+	And the "discontinued_date" displays a error 
+    And the computer is displayed with the old details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Examples:
+      | computer_name | introduced | discontinued | company | updated_introduced_date | updated_discontinued_date |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     | 23-03-1980	          | 23-03-1980                | 
+	  
+	  
+Feature: delete_a_computer
+
+  @Automated
+  Scenario Outline: Delete a computer from the Database
+    Given I am on the computer database website
+    And I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    When I delete the computer "<computer_name>"
+    Then the details of the computer "<computer_name>" are removed from Database
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     |	  
+	  
+Feature: searching
+
+  @NotAutomated
+  Scenario Outline: Search for a computer in the Database using the filter
+    Given I am on the computer database website
+	And I add a new computer with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    When I search for the computer "<computer_name>" in filter
+    Then the computer is displayed with the details "<computer_name>","<introduced>","<discontinued>" and "<company>"
+    Examples:
+      | computer_name | introduced | discontinued | company |
+      | AAAAA         | 1980-03-23 | 2020-03-23   | RCA     |
+	  
+Feature: pagination
+
+  @NotAutomated
+  Scenario: Each page shows a maximum of 10 computers
+    Given I am on the computer database website
+    When I scroll through each page of the database
+    Then 10 computers are showing per page  
